@@ -20,7 +20,7 @@ provider "aws" {
   region = "eu-central-1"
 }
 
-resource "aws_instance" "app_server" {
+resource "aws_instance" "web_server" {
   ami           = "ami-065deacbcaac64cf2"
   instance_type = "t2.nano"
 
@@ -29,8 +29,8 @@ resource "aws_instance" "app_server" {
   }
 }
 
-resource "aws_security_group" "server-sg" {
-  name = "server-sg"
+resource "aws_security_group" "web_server_sg" {
+  name = "web_server_sg"
   ingress {
     from_port   = 80
     to_port     = 80
@@ -47,5 +47,5 @@ resource "aws_security_group" "server-sg" {
 }
 
 output "web-address" {
-  value = "${aws_instance.app_server.public_dns}:80"
+  value = "${aws_instance.web_server.public_dns}:80"
 }
