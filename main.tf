@@ -32,8 +32,8 @@ resource "aws_instance" "web_server" {
 resource "aws_security_group" "web_server_sg" {
   name = "web_server_sg"
   ingress {
-    from_port   = 80
-    to_port     = 80
+    from_port   = 8080
+    to_port     = 8080
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
@@ -47,5 +47,5 @@ resource "aws_security_group" "web_server_sg" {
 }
 
 output "web-address" {
-  value = "${aws_instance.web_server.public_dns}:80"
+  value = "${aws_instance.web_server.public_dns}:8080"
 }
